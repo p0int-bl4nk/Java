@@ -26,7 +26,6 @@ public class HashMap {
 
   public void deleteHash(int key) {
     int hash = hashing(key);
-
     buckets[hash].delete(key);
   }
 
@@ -85,7 +84,7 @@ public class HashMap {
     public void delete(int key) {
       if (!isEmpty()) {
         if (first.getKey() == key) {
-          first = null;
+          first = first.getNext();
         } else {
           delete(first, key);
         }
@@ -101,7 +100,8 @@ public class HashMap {
         } else {
           n.setNext(n.getNext().getNext());
         }
-      }
+      } else {
+        delete(n.getNext(), key);
     }
 
     public String display() {
