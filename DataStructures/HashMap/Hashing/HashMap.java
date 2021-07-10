@@ -1,21 +1,21 @@
 package DataStructures.HashMap.Hashing;
 
 public class HashMap {
-  private int hsize;
-  private LinkedList[] buckets;
+  private final int hSize;
+  private final LinkedList[] buckets;
 
-  public HashMap(int hsize) {
-    buckets = new LinkedList[hsize];
-    for (int i = 0; i < hsize; i++) {
+  public HashMap(int hSize) {
+    buckets = new LinkedList[hSize];
+    for (int i = 0; i < hSize; i++) {
       buckets[i] = new LinkedList();
-      // Java requires explicit initialisaton of each object
+      // Java requires explicit initialisation of each object
     }
-    this.hsize = hsize;
+    this.hSize = hSize;
   }
 
   public int hashing(int key) {
-    int hash = key % hsize;
-    if (hash < 0) hash += hsize;
+    int hash = key % hSize;
+    if (hash < 0) hash += hSize;
     return hash;
   }
 
@@ -29,8 +29,8 @@ public class HashMap {
     buckets[hash].delete(key);
   }
 
-  public void displayHashtable() {
-    for (int i = 0; i < hsize; i++) {
+  public void displayHashTable() {
+    for (int i = 0; i < hSize; i++) {
       System.out.printf("Bucket %d :", i);
       System.out.println(buckets[i].display());
     }
@@ -102,8 +102,8 @@ public class HashMap {
         }
       } else {
         delete(n.getNext(), key);
+      }
     }
-
     public String display() {
       return display(first);
     }
@@ -123,7 +123,7 @@ public class HashMap {
 
   public static class Node {
     private Node next;
-    private int key;
+    private final int key;
 
     public Node(int key) {
       next = null;
